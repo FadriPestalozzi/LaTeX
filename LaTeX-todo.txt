@@ -1,0 +1,11 @@
+options
+define master file
+
+Texmaker Präsi:
+
+press F1 asap --> next slide:
+Erfolg!
+Success! 
+
+Sie haben soeben ihren ersten LaTeX Bericht erstellt :)
+You have just created your first LaTeX report :)

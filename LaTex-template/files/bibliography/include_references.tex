@@ -1,0 +1,32 @@
+% set a smaller font size for references
+\begin{footnotesize}
+
+% increase space between individual text lines for readability
+\begingroup\linespread{1.2}\selectfont
+
+% in order to break long URLs into several lines, add option to execute \linebreak after "/" (default) and additionally "-" 
+\def\UrlBigBreaks{\do\/\do-}
+
+%bibstyle refers to a file bibstyle.bst, which defines how your citations will look
+% assign output style to bibliography
+\bibliographystyle{files/bibliography/unsrturl}
+
+% unsrt stands for "unsorted", i.e. don't sort references in alphabetical order but put them in the order of citation instead
+
+% access the bibtex bibliography file
+%Only the entries referred to via \cite and \nocite will be listed in the bibliography.
+\bibliography{files/bibliography/references}
+
+% if references are printed in the wrong order
+% --> delete the file "bibliography.bib.bak" and compile again
+
+\endgroup
+
+\end{footnotesize}
+
+
+
+%\begin{thebibliography}{widest-label}
+%\bibitem[label]{cite_key}
+%...
+%\end{thebibliography}

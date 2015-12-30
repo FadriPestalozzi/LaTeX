@@ -1,0 +1,289 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% first, define the document class and basic layout
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[12pt]{report}
+\usepackage[
+  a4paper,    % alternative entries, feel free to experiment ^^
+  twoside,    % oneside
+  asymmetric, % openright
+]{geometry}
+% asymmetric "geometry package" to avoid swapping inner and outer marges
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% language and characters
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% switch language-specific output to German
+% for example: "Contents" becomes "Inhaltsverzeichnis"
+%\usepackage[ngerman]{babel}
+
+% load a font containing most common characters
+\usepackage{lmodern}
+
+% Zur Verwendung von Umlauten im Text wird das Paket "inputenc" benötigt
+\usepackage[utf8]{inputenc}
+
+% Zum Trennen von Wörtern mit Umlauten wird das Paket "fontenc" benötigt
+\usepackage[T1]{fontenc}
+
+\usepackage{amsmath}	% need for subequations and characters like \backslash to depict "\"
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% extend numbering in table of contents
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% subsubsection number visible, paragraph without number
+%\setcounter{secnumdepth}{3}   
+%\setcounter{tocdepth}{3}		% include into toc
+
+% paragraph number visible
+%\setcounter{secnumdepth}{4}  
+%\setcounter{tocdepth}{4}    	% include into toc
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% customize page headers and footers
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{fancyhdr} % place text on the top and/or bottom of every page
+
+\pagestyle{fancy}     % style further defined in layout.tex
+\fancyhf{}            % Kopf- und Fusszeile leeren
+\fancyhead[RO,LE]{\leftmark}  % R=right, L=left, O=odd, E=even, \leftmark = chapter, \rightmark = section
+%\fancyhead[LO,RE]{\rightmark}
+\fancyfoot[C]{\thepage}
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.0pt}
+
+\setlength{\headheight}{15pt} % fancyhdr requires headheight to be at least 15pt
+
+
+% Put this at the end of the preamble to avoid that LaTex forces chapters to always start on even pages
+\renewcommand{\cleardoublepage}{\clearpage}
+
+% to convert "chapter # // name" into "# name" --> use \titleformat & to do so, first load the package titlesec
+\usepackage{titlesec} % Textüberschriften anpassen
+\titleformat{\chapter}[hang]{\normalfont\Large\bf}{\LARGE\bf\thechapter}{1ex}{\LARGE}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% customization of line spacing and page layout
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\setlength{\baselineskip}{16.0pt}    % 16 pt usual spacing between lines
+%\setlength{\parskip}{3pt plus 2pt}
+%\setlength{\parindent}{20pt}
+%\setlength{\oddsidemargin}{0.5cm}
+%\setlength{\evensidemargin}{0.5cm}
+%\setlength{\marginparsep}{0.75cm}
+%\setlength{\marginparwidth}{2.5cm}
+%\setlength{\marginparpush}{1.0cm}
+%\setlength{\textwidth}{150mm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+%% distance of chapter heading reduced
+%%%%%%%%%%%%%%%%%%%%%%
+\titlespacing{\chapter}{0pt}{1em}{12pt}
+
+%%% intuitive Syntax
+%\titleformat{Überschriftenklasse}[Absatzformatierung]{Textformatierung} {Nummerierung}{Abstand zwischen Nummerierung und Überschriftentext}{Code vor der Überschrift}[Code nach der Überschrift]
+%\titleformat{\chapter}[hang]{\large\bfseries}{\thechapter\quad}{0pt}{}
+%\titleformat{\section}[hang]{\large\bfseries}{\thesection\quad}{0pt}{}
+%\titleformat{\subsection}[hang]{\large\bfseries}{\thesubsection\quad}{0pt}{}
+%\titleformat{\subsubsection}[hang]{\large\bfseries}{\thesubsubsection\quad}{0pt}{}
+%\titleformat{\paragraph}[hang]{\large\bfseries}{\theparagraph\quad}{0pt}{}
+
+%%% exakte Syntax
+%\titlespacing{Überschriftenklasse}{Linker Einzug}{Platz oberhalb}{Platz unterhalb}[rechter Einzug]
+%\titlespacing{\section}{0pt}{6pt}{6pt}
+%\titlespacing{\subsection}{0pt}{6pt}{6pt}
+%\titlespacing{\subsubsection}{0pt}{6pt}{6pt}
+%\titlespacing{\paragraph}{0pt}{6pt}{6pt}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% text
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{lipsum}  % to generate dummy text
+% Syntax inside document:
+% \lipsum            % default = slightly more than a single page
+% \lipsum[3-56]      % generate an arbitrary number of paragraphs
+
+\usepackage{color}    % use colored text, e.g. to highlight "work in progress"
+% Syntax inside document:
+% \textcolor{red}{colored_text}
+
+% subscript and supterscripts ??
+% \textsubscript{}
+% \textsuperscript{}
+
+% Non-breaking space to prevent the processor from inserting a line break
+% D.~\textsc{Knuth}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% tables
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% enable drawing horizontal lines (hline) across specific columns
+% \toprule
+% \midrule
+% \bottomrule
+% example to draw midrule between selected columns 2 and 3
+% .. & .. & .. \\ \cmidrule{2-3}
+\usepackage{booktabs}  
+
+%% enable long tables, exceeding one page
+%\usepackage{longtable}
+%
+%% use cells merged between adjacent columns
+%% mehrzeilige Tabelleneinträge
+%\usepackage{multirow}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% figures
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx}   % need for figures
+
+\usepackage{caption}	% to add captions to figures or tables
+
+\usepackage{subcaption} % use subcaption package to put several images inside the same figure (subfigure-package is outdated. BUT the command is still called "subfigure" ^^
+
+\usepackage{here}       % to enforce the figure start with a capital "H" -> "\begin{figure}[H]"  Without this, LaTex looks for a suitable spot to place a figure.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% logo
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{eso-pic}    % to place figures outside text margins (e.g. to include a logo). 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% define positions for logos
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% upper left
+\newcommand\AtPageMyUpperLeft[1]{\AtPageLowerLeft{%
+% \put(x,y) zero position at lower left corner of page
+\put(\LenToUnit{0.1\paperwidth},\LenToUnit{0.85\paperheight}){#1}}}
+
+% upper right
+\newcommand\AtPageMyUpperRight[1]{\AtPageLowerLeft{%
+% \put(x,y) zero position at lower left corner of page
+\put(\LenToUnit{0.75\paperwidth},\LenToUnit{0.85\paperheight}){#1}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% define logos
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% upper left
+\AddToShipoutPicture*{ % * ensures placement on first page only
+  \AtPageMyUpperLeft{
+  	{\includegraphics[height=3cm,keepaspectratio]{files/images/logo-LaTeX.jpg}}}}
+
+% upper right
+\AddToShipoutPicture*{ % * ensures placement on first page only
+  \AtPageMyUpperRight{
+  	{\includegraphics[height=3cm,keepaspectratio]{files/images/logo-GitHub.jpg}}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% further logo handling
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% to place image on every page instead of only first one, remove star
+% i.e. \AddToShipoutPicture{..} 
+
+% using \AddToShipoutPicture{..}, the printing can be stopped on further pages by calling \ClearShipoutPicture
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% hyperlinks
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% to break long urls at hyphens and spaces, call before {hyperref}-package
+\usepackage[hyphens,obeyspaces,spaces]{url}  
+
+% hypertext links, including those to external documents and URLs
+\usepackage[hidelinks,bookmarks,colorlinks=false]{hyperref} % for pdf hyperlinks, hidelinks==suppress printing a border around the links
+
+% adjust figure-links to point to the figure instead of the caption below
+\usepackage[all]{hypcap}            
+% vertical distance adjustment for links to figure captions
+\renewcommand{\hypcapspace}{100pt}  
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% nomenclature / list of acronyms
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{nomencl}                % in order to include a nomenclature
+\usepackage[printonlyused,withpage]{acronym} % "printonlyused" to hide entries which are not used. "withpage" includes the page where the acronym is used
+
+
+%% define a german label for the nomenclature
+%\renewcommand{\nomname}{Abkürzungsverzeichnis}
+%
+%%% Abkürzung und Erklärung mittels horizontaler Punktlinie verbinden
+%\setlength{\nomlabelwidth}{.20\hsize}
+%\renewcommand{\nomlabel}[1]{#1 \dotfill}
+%
+%%%% Zeilenabstände verkleinern
+%\setlength{\nomitemsep}{-\parsep}
+%\makenomenclature
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% show tex-code in LaTeX pdf-document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\usepackage{listings}
+% \usepackage[usenames,dvipsnames]{color}  % for optional color RoyalBlue
+
+% syntax to display latex code in pdf output:
+% \begin{document}
+% \lstinputlisting{files/code-2-display.tex}
+% \end{document}
+
+% optional settings to customize layout of listing output
+% call \lstset{..} inside header, i.e. just next to \usepackage{listings}
+% 
+% listings settings from classicthesis package by
+% Andr\'{e} Miede
+%\lstset{language=[LaTeX]Tex,%C++,
+%    keywordstyle=\color{RoyalBlue},%\bfseries,
+%    basicstyle=\small\ttfamily,
+%    %identifierstyle=\color{NavyBlue},
+%    commentstyle=\color{Green}\ttfamily,
+%    stringstyle=\rmfamily,
+%    numbers=none,%left,%
+%    numberstyle=\scriptsize,%\tiny
+%    stepnumber=5,
+%    numbersep=8pt,
+%    showstringspaces=false,
+%    breaklines=true,
+%    frameround=ftff,
+%    frame=single
+%    %frame=L
+%}
+
+\lstset{language=[LaTeX]Tex,%C++,
+    %keywordstyle=\color{RoyalBlue},%\bfseries,
+    %basicstyle=\small\ttfamily,
+    %identifierstyle=\color{NavyBlue},
+    %commentstyle=\color{Green}, %\ttfamily,
+    %stringstyle=\rmfamily,
+    %numbers=none,%left,%
+    %numberstyle=\scriptsize,%\tiny
+    %stepnumber=5,
+    %numbersep=8pt,
+    %showstringspaces=false,
+    breaklines=true %,
+    %frameround=ftff,
+    %frame=single
+    %frame=L
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% bibliography
+%% To avoid compilation errors load bibliography package as last package
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[nottoc,notlof,notlot]{tocbibind} 	% tocbibind = Put the bibliography in the table of contents
+
+
+

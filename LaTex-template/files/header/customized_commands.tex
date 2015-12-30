@@ -1,0 +1,86 @@
+
+%===================================================================
+%======================= CUSTOMIZED COMMANDS =======================
+%===================================================================
+
+% If a punctuation character like "." or "," follows a customized command, we need to omit the blank space otherwise necessary.
+% To solve this dilemma we can introduce the d-form of any command, where no space is printed afterwards. "d" stands for "dot".
+
+% As some very short commands like \g are reserved by LaTex, we can describe any unit by simply starting off with a "u".
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Arrows %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\ua}{$\uparrow$ }
+\newcommand{\da}{$\downarrow$ }
+\newcommand{\ra}{$\rightarrow$ }
+\newcommand{\la}{$\leftarrow$ }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Percent %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\upc}{$\%$ }
+\newcommand{\upcd}{$\%$}
+
+%%%%%%%%%%%%%%%%%%%%%%%%% Temperature %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\ucels}{$^\circ \mathrm{{C}}$ }
+\newcommand{\ucelsd}{$^\circ \mathrm{{C}}$}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Weight %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\ug}{$\mathrm{g}$ }
+\newcommand{\ugd}{$\mathrm{g}$}
+
+\newcommand{\umg}{$\mathrm{mg}$ }
+\newcommand{\umgd}{$\mathrm{mg}$}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Time %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\us}{$\mathrm{s}$ }
+\newcommand{\usd}{$\mathrm{s}$}
+
+\newcommand{\umin}{$\mathrm{min}$ }
+\newcommand{\umind}{$\mathrm{min}$}
+
+\newcommand{\uh}{$\mathrm{h}$ }
+\newcommand{\uhd}{$\mathrm{h}$}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Length %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\um}{$\mathrm{m}$ }
+\newcommand{\umd}{$\mathrm{m}$}
+
+\newcommand{\umm}{$\mathrm{mm}$ }
+\newcommand{\ummd}{$\mathrm{mm}$}
+
+\newcommand{\umu}{$\mathrm{\mu m}$ }
+\newcommand{\umud}{$\mathrm{\mu m}$}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%% Chemistry %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\coo}{$\mathrm{CO_2}$ }
+\newcommand{\cood}{$\mathrm{CO_2}$}
+
+\newcommand{\hh}{$\mathrm{H_2}$ }
+\newcommand{\hhd}{$\mathrm{H_2}$}
+
+
+%%%%%%%%%%%%%%%%%%%%%%% Math Environment %%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\di}{\displaystyle}   % to present important formulas with a nice big font
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Colors %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\todo}{\textcolor{red}{Pendent! }}
+
+% define color to track work progress, can be set to black=000 at the end of the work
+\definecolor{progress_color}{rgb}{1,0,0}
+
+% use color for new command \re = red = review = work in progress
+\newcommand{\re}{\textcolor{progress_color}}
+
+% usage in text:
+% \re{statement in red}

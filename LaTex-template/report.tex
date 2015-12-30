@@ -1,0 +1,65 @@
+% Hi there!
+% 
+% This template can help you write an awesome report while focusing on its content ;-)
+% I'm happy to receive your feedback at fadri.pestalozzi@gmail.com
+%
+% Enjoy the clear beauty and structure of LaTex!
+% Fadri Pestalozzi, 2015
+
+
+% In order to compile a LaTex document, we first need to load some packages
+\input{files/header/packages}
+
+% Frequently used content (e.g. symbols, formulas, environments, ...) can be replaced by customized commands for more efficient writing
+\input{files/header/customized_commands}
+
+% After loading packages and defining commands, we can now start writing the actual document
+\begin{document}
+
+% To separate introductory content from bulk text, I like to start off using roman page numbering. The default page numbering uses arabic numbers.
+\pagenumbering{roman}
+
+% Let's start by creating a custom title page
+\input{files/title_page}
+
+% To continue on a fresh page after finishing the table of contents, break the page!
+\pagebreak
+
+\hypertarget{toc:label}{}  %second brackets could hold target text. 
+%empty target label to refer to the table of contents
+
+% Next off, we can create a table of contents. The LaTex "table of contents" is automatically hyperlinked to the content listed inside. After following a link inside the pdf, jump back using alt+ArrowKeyLeft
+\tableofcontents
+
+\pagebreak
+
+% Switching back to arabic page numbering for the main text
+\pagenumbering{arabic}
+
+% Input individual chapters or even sections as separate .tex files for more clarity
+\input{files/chapters/chapter-1}
+\input{files/chapters/chapter-2}
+
+% To gather acronyms or explain some technical mumbo jumbo, a nomenclature may come in handy :)
+\input{files/nomenclature}
+
+% The bibliography is usually put at the end of a report
+\input{files/bibliography/include_references}
+
+% To implement a custom bibliography style with the citations in order of appearance and allowing for urls, the file "unsrturl.bst" has to be located in the same folder as the main .tex-file (=in our case "report.tex").
+
+%% template for a scientific report:
+%\input{files/nomenclature}
+%\input{files/chapters/Motivation}
+%\input{files/chapters/Previous_Work}
+%\input{files/chapters/Experimental_Setup}
+%\input{files/chapters/Materials_and_Methods}
+%\input{files/chapters/Results}
+%\input{files/chapters/Discussion}
+%\input{files/chapters/Conclusion}
+%\input{files/chapters/Outlook}
+%\input{files/bibliography/include_references}
+%\input{files/chapters/Appendix}
+
+% end the document
+\end{document} 

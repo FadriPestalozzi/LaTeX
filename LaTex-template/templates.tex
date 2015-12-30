@@ -1,0 +1,487 @@
+% This file contains some templates, accumulated over time
+% A rough classification is indicated with CAPITAL LETTERS
+
+
+
+
+
+
+
+
+% PAGE LAYOUT
+\usepackage{geometry}
+\geometry{verbose,a4paper,tmargin=30mm,bmargin=30mm,lmargin=30mm,rmargin=30mm}
+\geometry{landscape} 		% set up the page for landscape
+
+
+% INSERT EMPTY PAGE
+\newpage
+\thispagestyle{empty}
+\mbox{}
+
+
+% DEFINE INDENT AND PARAGRAPH SKIP
+\setlength{\parindent}{0pt}				% indent -> Einzug der ersten Zeile pro Absatz
+\setlength{\parskip}\medskipamount		% Abstand zwischen Absätzen machen
+
+
+% ENFORCE ADDITION TO TABLE OF CONTENTS
+\addcontentsline{toc}   % works even if chapter/section/.. is unnumbered (i.e. with *)
+
+
+% TEXT
+for every figure in the chapter "results", write down interpretation cues to use within the discussion
+every statement needs proof or has to be clearly declared as personal interpretation or assumption (can still be ok if it's based on facts)
+
+
+% LOCAL FONT SIZE
+% In ascending order
+\tiny
+\scriptsize
+\footnotesize
+\small
+\normalsize
+\large
+\Large
+\LARGE
+\huge
+\Huge
+
+% example to set local font size
+{ \large blabla bla
+bla}
+
+
+% Ä ä Umlaut
+\"{A}
+\"{a}
+
+
+% "quotation" marks, Anführungszeichen
+``text''
+``''
+
+% enable latin-style dummy text
+\usepackage{lipsum}
+% To insert just a passage of dummy text use
+\lipsum[1]
+% The number specifies, which lipsum-text will be printed.
+% To fill an entire page with dummy text use
+\lipsum
+
+
+% DEFINED EMPTY SPACE
+% define different empty space-widths in Math-Mode
+% Math-Mode is surrounded by dollar signs, i.e. $ Math-Mode $
+\, 	a small space
+\: 	a medium space
+\; 	a large space
+\quad 	a really large space
+\qquad 	a huge space
+\! 	a negative space (moves things back to the left)
+
+
+% SHORT CHAPTERS
+% group chapter titles onto the same page, kurze Kapitel auf derselben Seite beginnen
+% i.e. optionally suppress "newpage" after a short chapter
+\begingroup
+
+\let\clearpage\relax
+
+\chapter{a short chapter}
+
+\chapter{begin the next chapter on the same page}
+
+\endgroup
+
+
+
+% FIGURES
+
+% insert normal figure
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=1\columnwidth]{figures/}
+  \end{center}
+  \caption{}
+  \label{fig:}
+\end{figure}
+
+
+% how to use includegraphics
+\includegraphics[attr1=val1, attr2=val2, ..., attrn=valn]{imagename}
+
+arguments in square brackets are optional
+arguments in curly braces are compulsory.
+compilation with pdflatex allows to insert the following figure types: .jpg .png .pdf .eps
+
+If the image file has a spaces in its name, e.g. "chick picture.png", then you need to include the full filename when importing the image:
+\includegraphics{chick picture.png}
+
+Most common attributes, attribute order matters:
+width=length
+height=length
+possible length indications: 10mm, \linewidth \textwidth \textheight
+% to focus on only a part of the figure, trim it
+trim=l b r t    % trim order = left bottom right top
+clip          	% to trim set clip=true, i.e. \includegraphics[trim = 10mm 80mm 20mm 5mm, clip, width=3cm]{chick}
+
+
+
+% multiple images with individual captions inside the same figure
+\begin{figure}
+        \centering
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=\textwidth]{gull}
+                \caption{A gull}
+                \label{fig:gull}
+        \end{subfigure}%
+        ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+          %(or a blank line to force the subfigure onto a new line)
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=\textwidth]{tiger}
+                \caption{A tiger}
+                \label{fig:tiger}
+        \end{subfigure}
+        ~ %add desired spacing between images, e. g. ~, \quad, \qquad, \hfill etc.
+          %(or a blank line to force the subfigure onto a new line)
+        \begin{subfigure}[b]{0.3\textwidth}
+                \includegraphics[width=\textwidth]{mouse}
+                \caption{A mouse}
+                \label{fig:mouse}
+        \end{subfigure}
+        \caption{Pictures of animals}\label{fig:animals}
+\end{figure}
+
+
+% crop figures
+\includegraphics[trim=1cm 0cm 0cm 0cm, [width=0.49\textwidth]{figures/...} % trim = l b r t = left bottom right top
+
+
+% add graphics outside text margins
+% Header:
+\usepackage{eso-pic}
+% Inside Document:
+\AddToShipoutPicture{
+\AtPageUpperLeft{\raisebox{-\height}{\includegraphics[width=210.1mm]{HS_Pforzheim_logo.jpg}}}}  % 210mm at \documentclass[a4paper]{article}
+% AddToShipoutPicture* = addition only to current page
+% AddToShipoutPicture  = addition to every new page
+% \raisebox{displacement}[vertical][horizontal]{content to displace}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% TABLES
+% to scale a table, you need \usepackage{graphicx}
+ \scalebox{0.6}{obj}
+ obj = \begin{tabular}...\end{tabular}
+
+
+% draw a hline only across certain columns of a table
+\usepackage{booktabs}  % to enable:  .. & .. \\ \cmidrule{2-3}
+
+% Generate tables that exceed one page
+\usepackage{longtable}
+
+
+%% call label after caption!
+\begin{table}[htb]
+\centering            % NICHT \begin{center}
+\begin{tabular}{|c|c|c|}
+  \hline
+  Isotherm & $T\ [K]$ & $t_{iso}\ [s]$ \\
+  \hline
+  Oxidation & 1028 &  \\
+  Reduction & 1198 &  \\
+  \hline
+\end{tabular}
+\caption{...}
+\label{...}
+\end{table}
+
+
+% place caption above table instead of below
+\usepackage{float}
+\floatstyle{plaintop}
+\restylefloat{table}
+
+% mehrzeilige Tabelleneinträge
+\usepackage{multirow}
+
+% multirow example
+\begin{tabular}{|l|l|l|}
+\hline
+Author & Title & Year \\
+\hline
+\hline
+\multirow{3}{*}{Philip K. Dick} & Minority Report & 1956 \\
+\hline
+ & Do Androids Dream of Electric Sheep? & 1968 \\
+\hline
+ & A Scanner Darkly & 1977 \\
+\hline
+\multirow{3}{*}{Neal Stephenson} & Snow Crash & 1992 \\
+\hline
+ & The Diamond Age & 1995 \\
+\hline
+ & Cryptonomicon & 1999 \\
+\hline
+\end{tabular}
+
+
+% extra wide table
+\usepackage[lmargin=3cm]{geometry}
+\usepackage{changepage}
+\newenvironment{mytable}[1][tbp]{%
+  \begin{table}[#1]\begin{adjustwidth}{-2cm}{}}
+  {\end{adjustwidth}\end{table}}
+
+% inside document:
+\begin{mytable}[!ht]
+  \centering
+  \rule{\linewidth}{0cm}
+\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|}
+  \hline
+  T\ucels  & Run & $a$ & $a_{std}$ & $b$ & $b_{std}$ & $c$ & $c_{std}$ & $d$ & $d_{std}$ & $e$ & $e_{std}$ \\
+  \hline
+635 & 1 & 1.0E+0 & 5.9E-5 & -1.3E-2 & 2.5E-4 & 1.3E-1 & 3.3E-4 & 2.4E+1 & 1.6E-2 & 1.9E-1 & 5.5E-4 \\
+635 & 1 & 1.0E+0 & 5.9E-5 & -1.3E-2 & 2.5E-4 & 1.3E-1 & 3.3E-4 & 2.4E+1 & 1.6E-2 & 1.9E-1 & 5.5E-4 \\
+  \hline
+\end{tabular}
+\caption{Fitting coefficients of measurements with \acs{tg}, \acs{m0}=100\umgd, flat crucible.}
+\label{tab:cf_tg_100}
+\end{mytable}
+
+
+
+% create table with both x- and y-hierarchies
+\usepackage{booktabs}
+\newcommand{\ra}[1]{\renewcommand{\arraystretch}{#1}}
+\begin{table*}\centering
+\ra{1.3}
+\begin{tabular}{@{}rrrrcrrrcrrr@{}}\toprule
+& \multicolumn{3}{c}{$w = 8$} & \phantom{abc}& \multicolumn{3}{c}{$w = 16$} &
+\phantom{abc} & \multicolumn{3}{c}{$w = 32$}\\
+\cmidrule{2-4} \cmidrule{6-8} \cmidrule{10-12}
+& $t=0$ & $t=1$ & $t=2$ && $t=0$ & $t=1$ & $t=2$ && $t=0$ & $t=1$ & $t=2$\\\midrule
+$dir=1$\\
+$c$ & 0.0790 & 0.1692 & 0.2945 && 0.3670 & 0.7187 & 3.1815 && -1.0032 & -1.7104 & -21.7969\\
+$c$ & -0.8651& 50.0476& 5.9384&& -9.0714& 297.0923& 46.2143&& 4.3590& 34.5809& 76.9167\\
+$c$ & 124.2756& -50.9612& -14.2721&& 128.2265& -630.5455& -381.0930&& -121.0518& -137.1210& -220.2500\\
+$dir=0$\\
+$c$ & 0.0357& 1.2473& 0.2119&& 0.3593& -0.2755& 2.1764&& -1.2998& -3.8202& -1.2784\\
+$c$ & -17.9048& -37.1111& 8.8591&& -30.7381& -9.5952& -3.0000&& -11.1631& -5.7108& -15.6728\\
+$c$ & 105.5518& 232.1160& -94.7351&& 100.2497& 141.2778& -259.7326&& 52.5745& 10.1098& -140.2130\\
+\bottomrule
+\end{tabular}
+\caption{Caption}
+\end{table*}
+
+
+
+
+% EQUATIONS
+\usepackage{amsmath}  % aligned equations
+\usepackage{cancel}   % cancel in equations, $\cancelto{0}{\frac{a}{b}}$
+\usepackage{chemarr}  % for \xrightleftharpoons[below, pointing left]{above, pointing right}
+
+
+% general alignment
+\newlength{\leftside}       % to align equal signs and braces on the right
+\newlength{\rightside}      % to align equal signs and braces on the right
+\newcommand*{\leftterm}{}   % to align equal signs and braces on the right
+\newcommand*{\rightterm}{}  % to align equal signs and braces on the right
+\newcommand*{\term}[1]{$\displaystyle#1$}   % to align equal signs and braces on the right
+
+
+% to align equations, use "&"
+% e.g. to align along "=" use "&="
+\begin{equation}\label{eq:mole_balance}
+    \begin{split}
+        \text{Accumulation} &= \text{Inflow - Outflow + Generation} \\
+        \frac{dN_A}{dt} &= \dot N_{A0} - \dot N_{A} + \int_0^V r_A dV
+\end{split}
+\end{equation}
+
+
+% align equations along "=" and along "}"
+\[
+\renewcommand*{\leftterm}{\alpha_X \times \alpha_Y}
+\renewcommand*{\rightterm}{\sqrt{\sinh E - \tan^2\tfrac{F}{2}}}
+\settowidth{\leftside}{\term{\leftterm}}
+\settowidth{\rightside}{\term{\rightterm}}
+\begin{array}{l}
+  \left.\begin{aligned}
+    \leftterm &= \makebox[\rightside][l]{\term{\chi}} \\
+    \alpha_X \times \beta_Y &= \xi \\
+    \beta_X \times \beta_Y &= \zeta
+  \end{aligned}\right\} \quad X<Y \\[2em]
+  \left.\begin{aligned}
+    \makebox[\leftside][r]{\term{\Upsilon_j}} &= 0 \\
+    \Psi_j &= \rightterm \\
+    \Gamma_j &= F
+  \end{aligned}\right\} \quad j=1,\ldots,g
+\end{array}
+\]
+
+
+
+
+
+
+% CAPTIONS
+\usepackage{caption}[2008/04/01] % Veränderung der captions möglich:
+\captionsetup{margin=10pt, % Textgrösse
+font=normalsize, % font: für Beschriftung und Text; labelfont: für Beschriftung; textfont: für Text -> scriptsize, footnotesize, small, normalsize, large, Large: also Schriftgrösse für alles
+labelfont=bf, % Beschriftung (labelfont) noch zusätzlich fett
+font=it, % Schriftart für alles (font) kursiv setzen
+labelsep=endash, % Strich zwischen Beschriftung und Text
+format=hang, % erzeugt Einzug für Text entsprechend Beschriftung
+tablename=Tab., % Art der Beschriftung für Tables
+figurename=Fig.} % Art der Beschriftung
+
+% split equation
+\begin{equation} \phantomsection \label{eq:phi_m_mm}
+\begin{split}
+    m_{Mn_2O_3} \cdot \Phi &= \Delta m_{O2} \\
+    \Delta m_{O2} &= m_{Mn_2O_3} - m_{Mn_3O_4} \\
+    m_{Mn_3O_4} &= m_{Mn_2O_3} \cdot (1-\Phi) \\
+    m_{Mn_2O_3} &= \frac{m_{Mn_3O_4}}{1-\Phi}
+\end{split}
+\end{equation}
+
+
+% Combine Equations
+\begin{subequations}\label{fml:reaction_rates}
+   \begin{align}
+          \acs{r_H2} &=-2\:\acs{r_syngas} \label{fml:reaction_rate_rH2} \\[2ex]
+					\acs{r_CO} &=-\acs{r_syngas} \label{fml:reaction_rate_rCO} \\
+					\acs{r_H2O} &=\acs{r_syngas} \label{fml:reaction_rate_rH2O} \\
+					\acs{r_CH4} &=\left(1-\acs{alpha}\right)\acs{r_syngas} \label{fml:reaction_rate_rC1} \\
+					\acs{r_C2H6} &=\left(1-\acs{alpha}\right)\acs{alpha} \acs{r_syngas} \label{fml:reaction_rate_rC2} \\
+					\acs{r_C3H8} &=\left(1-\acs{alpha}\right)\acs{alpha}^2 \acs{r_syngas} \label{fml:reaction_rate_rC3} \\
+					\acs{r_C4H10} &=\left(1-\acs{alpha}\right)\acs{alpha}^3 \acs{r_syngas} \label{fml:reaction_rate_rC4} \\
+					\acs{r_C12H26} &=\sum^{n=200}_{n=5}\left(1-\acs{alpha}\right)\acs{alpha}^{n-1} \acs{r_syngas} \label{fml:reaction_rate_rC5}
+   \end{align}
+\end{subequations}
+
+
+%% aufrecht, nicht kursiv
+\mathrm
+
+
+% PARENTHESES
+% horizontal parentheses in equation
+\begin{equation}
+\underbrace{A}_{\parbox{3cm}{\footnotesize\center{"Description A"}}} = - \underbrace{B}_{\parbox{1cm}{\footnotesize\center{"Description B"}}} - C
+\label{fml:Example_underbrace}
+\end{equation}
+
+
+% parentheses order
+{ [ ( ) ] }
+
+
+% vertical parentheses to combine items
+\begin{minipage}{\dimexpr.5\linewidth-1em\relax}
+  \begin{itemize}
+	\item $\left.c_{H_2}\right|_{\acs{z}=0}=\acs{c_H2_inlet}$
+	\item $\left.c_{CO}\right|_{\acs{z}=0}=\acs{c_CO_inlet}$
+	\item $\left.c_{H2O}\right|_{\acs{z}=0}=0$
+	\item $\left.c_{CH_4}\right|_{\acs{z}=0}=0$
+	\item $\left.c_{C_2H_6}\right|_{\acs{z}=0}=0$
+	\item $\left.c_{C_3H_8}\right|_{\acs{z}=0}=0$
+	\item $\left.c_{C_4H_{10}}\right|_{\acs{z}=0}=0$
+	\item $\left.c_{C_{12}H_{26}}\right|_{\acs{z}=0}=0$
+\end{itemize}
+\end{minipage}
+\begin{minipage}[0pt]{1em}
+  $\left.\mbox{\rule{0pt}{6.5\baselineskip}}\right\}$
+\end{minipage}
+\begin{minipage}{\dimexpr.5\linewidth-1em\relax}
+inlet concentrations
+\end{minipage}
+
+
+% REFERENCES
+\label{label_A}
+\ref{label_A}
+\cite{author}
+
+%% Bibtex characters
+ß = {\ss}
+ä = \"{a}
+
+
+
+% APPENDIX
+\begin{appendix} Text \end{appendix}  % Seitennummerierung beginnt von vorne und mit Buchstaben
+
+
+% Draft Wasserzeichen
+\usepackage[firstpage]{draftwatermark} %puts "Draft" on first page (on every page if [firstpage] is not included)
+\SetWatermarkText{Draft 7}
+\SetWatermarkLightness{0.8}
+\SetWatermarkScale{1.5}
+
+
+% Einzug für itemize-listen
+\usepackage{paralist}  %  --> \setdefaultleftmargin{1.5em}{1em}{}{}{}{} für verschiedene ebenen, 1.5em hier für erste ebene
+
+
+
+
+
+% CHECKMARKS
+% define scalable checkmarks, ticks, indicate correct answer, Korrektur Haken
+\documentclass[preview,border=12pt,varwidth]{standalone}
+\usepackage{tikz}    %% checkmark-package 1/2
+\usepackage{calc}    %% checkmark-package 2/2
+\def\checkmarkk{\tikz\fill[scale=0.4](0,.35) -- (.25,0) -- (1,.7) -- (.25,.15) -- cycle;}
+\def\checkmark{\resizebox{\widthof{\checkmarkk}*\ratio{\widthof{x}}{\widthof{\normalsize x}}}{!}{\checkmarkk}}
+
+% within document:
+\checkmark
+
+% Example:
+%\begin{document}
+%\footnotesize
+%This is a footnotesize \checkmark checkmark in footnotesize text.
+%\normalsize
+%This is a \checkmark checkmark.
+%\huge
+%This is a huge \checkmark checkmark in huge text.
+%\end{document}
+
+
+% UNDERLINE OR CROSS OUT
+\usepackage{ulem}
+%% modifications by ulem-package:
+%    \uline{important}: unterstreichen
+%    \uuline{urgent}: doppelt unterstreichen
+%    \uwave{boat}: unterschlängeln
+%    \sout{wrong}: durchstreichen
+%    \xout{removed}: ausstreichen mit //////.
+%
+% Außerdem wird der Befehl \em und \emph{...} von kursiv auf unterstreichen umgestellt.
+% Das lässt sich aber mit \normalem wieder abstellen.
+
+
+
+
+
+% EXTERNAL INPUT
+% include .pdf files; NEED pdfpages.sty
+\usepackage{pdfpages}
+
+
+% include MATLAB code
+\usepackage{listings} %to include m-files -> combine with mcode to get correct colors
+\usepackage[framed,numbered]{mcode} %to use matlab design;
+\lstset{language=matlab, numbers=left, numberstyle=\tiny, frame=single} %then start with
+\begin{lstlisting}; % insert matlab text copied from editor;
+\end{lstlisting};
+%the file "mcode.sty" needs to be copied to the same folder like the executing ".tex"-file
+
+
+
+
+

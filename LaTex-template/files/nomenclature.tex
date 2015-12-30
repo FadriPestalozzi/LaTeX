@@ -1,0 +1,50 @@
+% you can create hyperlinks between acronyms in the bulk text and their descriptions, which are placed inside this nomenclature-chapter
+
+% the "*" after "chapter" is used to suppress the chapter number
+\chapter*{Nomenclature}   
+
+% include Nomenclature into the table of contents
+\addcontentsline{toc}{chapter}{Nomenclature}
+
+% add label to reference to nomenclature
+\label{text:nomenclature}
+
+% The nomenclature can be divided into different categories, e.g. via sections
+\section*{Abbreviations}
+
+\begin{acronym}[$leeeeeeength_of_tabulator$]    % number of "eee"s defines the length of tabulator between acronym and its explanation
+\setlength{\itemsep}{0mm}
+
+% now the acronyms can be defined, syntax:
+% \acro{input for \ac{..} }[displayed form]{\acroextra{\hyperref[label at first occurrence]{long form, shown only here}}}
+
+% sample data
+\acro{tg}[TG]{\acroextra{\hyperref[def:tg]{Thermogravimetry}}}
+
+
+\end{acronym}
+
+% to place the acronym inside the text, you can write one of the following:
+% \ac{..}   % initially full, then short form
+% \acf{..}  % full form
+% \acs{..}  % short form
+
+
+% Normally, any \label outside an object (like figures or tables) points to the current section title.
+% To have a link point to the exact line where the \label is defined (e.g. to point exactly to the first usage of a new acronym), you can use the command \phantomsection just before the label and acronym
+%% bla bla
+%% \phantomsection \label{def:tg} \acs{tg}
+%% bla bla
+
+
+\section*{Greek Symbols}
+\begin{acronym}[$leeeeeeength_of_tabulator$]
+\setlength{\itemsep}{0mm}
+
+%% start listing acronyms
+\acro{eps}[$\epsilon$]{\acroextra{\hyperref[def:eps]{Die Permittivität $\epsilon$, auch bekannt als dielektrische Konstante, ist ein Mass für die Durchlässigkeit eines Materials für elektrische Felder.}}}
+
+% to check if symbols not used in the text are omitted from the nomenclature, an additional entry is placed here:
+\acro{om}[$\omega$]{\acroextra{\hyperref[def:om]{Elektrischer Widerstand in [Ohm].}}}
+
+\end{acronym} 
